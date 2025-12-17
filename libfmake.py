@@ -57,12 +57,12 @@ def readConfig(configName):
 
     return (cc,src,out,msg,say,run,mke,mkf)
 
-def genConfig(fileName="make.fmake",overWrite=False,gCC="gcc",gSRC="main.c",gOUT="main",gMSG=True,gSAY="Compiling done!",gRUN=False):
+def genConfig(fileName="make.fmake",overWrite=False,gCC="gcc",gSRC="main.c",gOUT="main",gMSG=True,gSAY="Compiling done!",gRUN=False,gMKE=False,gMKF="-j$(nproc)"):
     if os.path.exists(fileName) and not overWrite:
         return -1
     elif os.path.exists(fileName) and overWrite or not os.path.exists(fileName):
         f = open(fileName,"w")
-        f.write(f"cc = {gCC}\nsrc = {gSRC}\nout = {gOUT}\nmsg = {str(gMSG).lower()}\nsay = {gSAY}\nrun = {str(gRUN).lower()}\nmke = {str(mke).lower()}\nmkf = {mkf}")
+        f.write(f"cc = {gCC}\nsrc = {gSRC}\nout = {gOUT}\nmsg = {str(gMSG).lower()}\nsay = {gSAY}\nrun = {str(gRUN).lower()}\nmke = {str(gMKE).lower()}\nmkf = {gMKF}")
         f.close()
         return 0
         
